@@ -144,9 +144,7 @@ export default class Webcam extends Component {
         })
     };
 
-    if (this.props.audioSource && this.props.videoSource) {
-      sourceSelected(this.props.audioSource, this.props.videoSource);
-    } else if ('mediaDevices' in navigator) {
+    if ('mediaDevices' in navigator) {
       navigator.mediaDevices.enumerateDevices().then((devices) => {
         let audioSource = null;
         let videoSource = null;
@@ -158,6 +156,9 @@ export default class Webcam extends Component {
             videoSource = device.id;
           }
         });
+
+        if (this.props.audioSource) { audioSource = this.props.audioSource; }
+        if (this.props.videoSource) { videoSource = this.props.videoSource; }
 
         sourceSelected(audioSource, videoSource);
       })
@@ -176,6 +177,9 @@ export default class Webcam extends Component {
             videoSource = source.id;
           }
         });
+
+        if (this.props.audioSource) { audioSource = this.props.audioSource; }
+        if (this.props.videoSource) { videoSource = this.props.videoSource; }
 
         sourceSelected(audioSource, videoSource);
       });
