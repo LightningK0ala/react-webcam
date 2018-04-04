@@ -948,6 +948,14 @@ var Webcam = function (_Component) {
       }
     }
   }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      // eslint-disable-line no-unused-vars
+      if (nextProps.videoSource !== this.props.videoSource || nextProps.audioSource !== this.props.audioSource) {
+        this.requestUserMedia();
+      }
+    }
+  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       var index = Webcam.mountedInstances.indexOf(this);
