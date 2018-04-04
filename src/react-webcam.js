@@ -62,6 +62,15 @@ export default class Webcam extends Component {
     }
   }
 
+  componentWillUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
+    if (
+      nextProps.videoSource !== this.props.videoSource ||
+      nextProps.audioSource !== this.props.audioSource
+    ) {
+      this.requestUserMedia();
+    }
+  }
+
   componentWillUnmount() {
     const index = Webcam.mountedInstances.indexOf(this);
     Webcam.mountedInstances.splice(index, 1);
